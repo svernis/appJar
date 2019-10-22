@@ -6,6 +6,7 @@
 * <div class="cb cb-add">Added</div> getTextAreaTagRanges() to [TextAreas](/inputWidgets/#textarea) - [#572](https://github.com/jarvisteach/appJar/issues/572) & [#558](https://github.com/jarvisteach/appJar/issues/558)
 * <div class="cb cb-add">Added</div> the ability to find out which window is in [focus](/simpleProperties/#gui-settings) - [#510](https://github.com/jarvisteach/appJar/issues/510)
 * <div class="cb cb-add">Added</div> ability to set images/icons for [tabs](/pythonWidgetGrouping/#set-tabbedframe) - [#380](https://github.com/jarvisteach/appJar/issues/380)
+* <div class="cb cb-add">Added</div> ability to [remove a widget](/pythonWidgetOptions/#widget-manipulation) based on its grid position in a container - [#372](https://github.com/jarvisteach/appJar/issues/372)
 
 ## Version 0.94  
 
