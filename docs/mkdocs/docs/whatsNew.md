@@ -3,6 +3,8 @@
 
 ## Version 0.95  
 
+* <div class="cb cb-add">Added</div> the ability to [redirect output](/pythonOutputRedirection.md) (print) to a TextArea - [#606](https://github.com/jarvisteach/appJar/issues/606)
+* <div class="cb cb-add">Added</div> change function to [ToggleFrames](/pythonWidgetGrouping/#toggle-frame) - [#602](https://github.com/jarvisteach/appJar/issues/602)
 * <div class="cb cb-add">Added</div> getTextAreaTagRanges() to [TextAreas](/inputWidgets/#textarea) - [#572](https://github.com/jarvisteach/appJar/issues/572) & [#558](https://github.com/jarvisteach/appJar/issues/558)
 * <div class="cb cb-add">Added</div> the ability to find out which window is in [focus](/simpleProperties/#gui-settings) - [#510](https://github.com/jarvisteach/appJar/issues/510)
 * <div class="cb cb-add">Added</div> ability to set images/icons for [tabs](/pythonWidgetGrouping/#set-tabbedframe) - [#380](https://github.com/jarvisteach/appJar/issues/380)
