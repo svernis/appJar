@@ -43,7 +43,7 @@ import os
 import sys
 import locale
 import re
-import imghdr  # images
+import puremagic  # images
 import time  # splashscreen
 import calendar  # datepicker
 import datetime  # datepicker & image
@@ -3343,223 +3343,223 @@ class gui(object):
             exec( "def set" + v +
                 "Bg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'background', val)")
-            exec("gui.set" + v + "Bg=set" + v + "Bg")
+            exec("gui.set" + v + "Bg=self.set" + v + "Bg")
             exec( "def set" + v +
                 "Fg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'foreground', val)")
-            exec("gui.set" + v + "Fg=set" + v + "Fg")
+            exec("gui.set" + v + "Fg=self.set" + v + "Fg")
 
             exec( "def set" + v +
                 "DisabledFg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'disabledforeground', val)")
-            exec("gui.set" + v + "DisabledFg=set" + v + "DisabledFg")
+            exec("gui.set" + v + "DisabledFg=self.set" + v + "DisabledFg")
             exec( "def set" + v +
                 "DisabledBg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'disabledbackground', val)")
-            exec("gui.set" + v + "DisabledBg=set" + v + "DisabledBg")
+            exec("gui.set" + v + "DisabledBg=self.set" + v + "DisabledBg")
 
             exec( "def set" + v +
                 "ActiveFg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'activeforeground', val)")
-            exec("gui.set" + v + "ActiveFg=set" + v + "ActiveFg")
+            exec("gui.set" + v + "ActiveFg=self.set" + v + "ActiveFg")
             exec( "def set" + v +
                 "ActiveBg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'activebackground', val)")
-            exec("gui.set" + v + "ActiveBg=set" + v + "ActiveBg")
+            exec("gui.set" + v + "ActiveBg=self.set" + v + "ActiveBg")
 
             exec( "def set" + v +
                 "InactiveFg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'inactiveforeground', val)")
-            exec("gui.set" + v + "InactiveFg=set" + v + "InactiveFg")
+            exec("gui.set" + v + "InactiveFg=self.set" + v + "InactiveFg")
             exec( "def set" + v +
                 "InactiveBg(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'inactivebackground', val)")
-            exec("gui.set" + v + "InactiveBg=set" + v + "InactiveBg")
+            exec("gui.set" + v + "InactiveBg=self.set" + v + "InactiveBg")
 
             exec( "def set" + v +
                 "Width(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'width', val)")
-            exec("gui.set" + v + "Width=set" + v + "Width")
+            exec("gui.set" + v + "Width=self.set" + v + "Width")
             exec( "def set" + v +
                 "Height(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'height', val)")
-            exec("gui.set" + v + "Height=set" + v + "Height")
+            exec("gui.set" + v + "Height=self.set" + v + "Height")
             exec( "def set" + v +
                 "State(self, name, val): self.configureWidgets(" +
                 str(k) + ", name, 'state', val)")
-            exec("gui.set" + v + "State=set" + v + "State")
+            exec("gui.set" + v + "State=self.set" + v + "State")
             exec( "def set" + v +
                 "Padding(self, name, x, y=None): self.configureWidgets(" +
                 str(k) + ", name, 'padding', [x, y])")
-            exec("gui.set" + v + "Padding=set" + v + "Padding")
+            exec("gui.set" + v + "Padding=self.set" + v + "Padding")
 
             exec( "def set" + v +
                 "IPadding(self, name, x, y=None): self.configureWidgets(" +
                 str(k) + ", name, 'ipadding', [x, y])")
-            exec("gui.set" + v + "IPadding=set" + v + "IPadding")
+            exec("gui.set" + v + "IPadding=self.set" + v + "IPadding")
 
             exec( "def set" + v +
                 "InPadding(self, name, x, y=None): self.configureWidgets(" +
                 str(k) + ", name, 'ipadding', [x, y])")
-            exec("gui.set" + v + "InPadding=set" + v + "InPadding")
+            exec("gui.set" + v + "InPadding=self.set" + v + "InPadding")
 
             # drag and drop stuff
             exec( "def set" + v +
                 "DropTarget(self, name, function=None, replace=True): self.configureWidgets(" +
                 str(k) + ", name, 'externalDrop', [function, replace])")
-            exec("gui.set" + v + "DropTarget=set" + v + "DropTarget")
+            exec("gui.set" + v + "DropTarget=self.set" + v + "DropTarget")
 
             exec( "def set" + v +
                 "DragSource(self, name, function=None): self.configureWidgets(" +
                 str(k) + ", name, 'externalDrag', function)")
-            exec("gui.set" + v + "DragSource=set" + v + "DragSource")
+            exec("gui.set" + v + "DragSource=self.set" + v + "DragSource")
 
             exec( "def register" + v +
                 "Draggable(self, name, function=None): self.configureWidgets(" +
                 str(k) + ", name, 'internalDrag', function)")
-            exec("gui.register" + v + "Draggable=register" + v + "Draggable")
+            exec("gui.register" + v + "Draggable=self.register" + v + "Draggable")
 
             exec( "def register" + v +
                 "Droppable(self, name, function=None): self.configureWidgets(" +
                 str(k) + ", name, 'internalDrop', function)")
-            exec("gui.register" + v + "Droppable=register" + v + "Droppable")
+            exec("gui.register" + v + "Droppable=self.register" + v + "Droppable")
 
             exec( "def set" + v +
                 "Style(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'style', val)")
-            exec("gui.set" + v + "Style=set" + v + "Style")
+            exec("gui.set" + v + "Style=self.set" + v + "Style")
 
             # might not all be necessary, could make exclusion list
             exec( "def set" + v +
                 "Relief(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'relief', val)")
-            exec("gui.set" + v + "Relief=set" + v + "Relief")
+            exec("gui.set" + v + "Relief=self.set" + v + "Relief")
             exec( "def set" + v +
                 "Align(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'align', val)")
-            exec("gui.set" + v + "Align=set" + v + "Align")
+            exec("gui.set" + v + "Align=self.set" + v + "Align")
             exec( "def set" + v +
                 "Anchor(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'anchor', val)")
-            exec("gui.set" + v + "Anchor=set" + v + "Anchor")
+            exec("gui.set" + v + "Anchor=self.set" + v + "Anchor")
 
             exec( "def set" + v +
                 "Tooltip(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'tooltip', val)")
-            exec("gui.set" + v + "Tooltip=set" + v + "Tooltip")
+            exec("gui.set" + v + "Tooltip=self.set" + v + "Tooltip")
 
             exec( "def disable" + v +
                 "Tooltip(self, name): self.configureWidget(" +
                 str(k) + ", name, 'disableTooltip', None)")
-            exec("gui.disable" + v + "Tooltip=disable" + v + "Tooltip")
+            exec("gui.disable" + v + "Tooltip=self.disable" + v + "Tooltip")
 
             exec( "def enable" + v +
                 "Tooltip(self, name): self.configureWidget(" +
                 str(k) + ", name, 'enableTooltip', None)")
-            exec("gui.enable" + v + "Tooltip=enable" + v + "Tooltip")
+            exec("gui.enable" + v + "Tooltip=self.enable" + v + "Tooltip")
 
             # function setters
             exec( "def set" + v +
                 "ChangeFunction(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'change', val)")
-            exec("gui.set" + v + "ChangeFunction=set" + v + "ChangeFunction")
+            exec("gui.set" + v + "ChangeFunction=self.set" + v + "ChangeFunction")
             exec( "def set" + v +
                 "SubmitFunction(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'submit', val)")
-            exec("gui.set" + v + "SubmitFunction=set" + v + "SubmitFunction")
+            exec("gui.set" + v + "SubmitFunction=self.set" + v + "SubmitFunction")
             exec( "def set" + v +
                 "DragFunction(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'drag', val)")
-            exec("gui.set" + v + "DragFunction=set" + v + "DragFunction")
+            exec("gui.set" + v + "DragFunction=self.set" + v + "DragFunction")
             exec( "def set" + v +
                 "OverFunction(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'over', val)")
-            exec("gui.set" + v + "OverFunction=set" + v + "OverFunction")
+            exec("gui.set" + v + "OverFunction=self.set" + v + "OverFunction")
 
             # http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/cursors.html
             exec( "def set" + v +
                 "Cursor(self, name, val): self.configureWidget(" +
                 str(k) + ", name, 'cursor', val)")
-            exec("gui.set" + v + "Cursor=set" + v + "Cursor")
+            exec("gui.set" + v + "Cursor=self.set" + v + "Cursor")
             exec( "def set" + v +
                 "Focus(self, name): self.configureWidget(" +
                 str(k) + ", name, 'focus', None)")
-            exec("gui.set" + v + "Focus=set" + v + "Focus")
+            exec("gui.set" + v + "Focus=self.set" + v + "Focus")
 
             # change the stickyness
             exec( "def set" + v +
                 "Sticky(self, name, pos): self.configureWidget(" +
                 str(k) + ", name, 'sticky', pos)")
-            exec("gui.set" + v + "Sticky=set" + v + "Sticky")
+            exec("gui.set" + v + "Sticky=self.set" + v + "Sticky")
 
             # add right click
             exec( "def set" + v +
                 "RightClick(self, name, menu): self.configureWidget(" +
                 str(k) + ", name, 'rightClick', menu)")
-            exec("gui.set" + v + "RightClick=set" + v + "RightClick")
+            exec("gui.set" + v + "RightClick=self.set" + v + "RightClick")
 
             # functions to manage widgets
             exec( "def show" + v +
                 "(self, name): self.showWidgetType(" +
                 str(k) + ", name)")
-            exec("gui.show" + v + "=show" + v)
+            exec("gui.show" + v + "=self.show" + v)
             exec( "def hide" + v +
                 "(self, name, collapse=False): self.hideWidgetType(" +
                 str(k) + ", name, collapse)")
-            exec("gui.hide" + v + "=hide" + v)
+            exec("gui.hide" + v + "=self.hide" + v)
             exec( "def remove" + v +
                 "(self, name, collapse=False): self.removeWidgetType(" +
                 str(k) + ", name, collapse)")
-            exec("gui.remove" + v + "=remove" + v)
+            exec("gui.remove" + v + "=self.remove" + v)
             exec( "def move" + v +
                 "(self, name, row=None, column=0, colspan=0, rowspan=0, sticky=W+E): self.moveWidgetType(" +
                 str(k) + ", name, row, column, colspan, rowspan, sticky)")
-            exec("gui.move" + v + "=move" + v)
+            exec("gui.move" + v + "=self.move" + v)
 
             exec( "def empty" + v +
                 "(self, name): self._emptyContainerType(" +
                 str(k) + ", name)")
-            exec("gui.empty" + v + "=empty" + v)
+            exec("gui.empty" + v + "=self.empty" + v)
 
             # convenience functions for enable/disable
             # might not all be necessary, could make exclusion list
             exec( "def enable" + v +
                 "(self, name): self.configureWidget(" +
                 str(k) + ", name, 'state', 'normal')")
-            exec("gui.enable" + v + "=enable" + v)
+            exec("gui.enable" + v + "=self.enable" + v)
             exec( "def disable" + v +
                 "(self, name): self.configureWidget(" +
                 str(k) + ", name, 'state', 'disabled')")
-            exec("gui.disable" + v + "=disable" + v)
+            exec("gui.disable" + v + "=self.disable" + v)
 
             # group functions
             exec( "def set" + v +
                 "Widths(self, names, val): self.configureWidgets(" +
                 str(k) + ", names, 'width', val)")
-            exec("gui.set" + v + "Widths=set" + v + "Widths")
+            exec("gui.set" + v + "Widths=self.set" + v + "Widths")
             exec( "def setAll" + v +
                 "Widths(self, val): self.configureAllWidgets(" +
                 str(k) + ", 'width', val)")
-            exec("gui.setAll" + v + "Widths=setAll" + v + "Widths")
+            exec("gui.setAll" + v + "Widths=self.setAll" + v + "Widths")
 
             exec( "def set" + v +
                 "Heights(self, names, val): self.configureWidgets(" +
                 str(k) + ", names, 'height', val)")
-            exec("gui.set" + v + "Heights=set" + v + "Heights")
+            exec("gui.set" + v + "Heights=self.set" + v + "Heights")
             exec( "def setAll" + v +
                 "Heights(self, val): self.configureAllWidgets(" +
                 str(k) + ", 'height', val)")
-            exec("gui.setAll" + v + "Heights=setAll" + v + "Heights")
+            exec("gui.setAll" + v + "Heights=self.setAll" + v + "Heights")
 
             exec( "def get" + v +
                 "Widget(self, name, val=None): return self.getWidget(" +
                 str(k) + ", name, val)")
-            exec("gui.get" + v + "Widget=get" + v + "Widget")
+            exec("gui.get" + v + "Widget=self.get" + v + "Widget")
 
             exec( "def get" + v +
                 "Bg(self, name, val=None): return self.getWidgetProperty(" +
                 str(k) + ", name, val, 'bg')")
-            exec("gui.get" + v + "Bg=get" + v + "Bg")
+            exec("gui.get" + v + "Bg=self.get" + v + "Bg")
 
 #####################################
 #  FUNCTION to hide/show/remove widgets
@@ -7310,7 +7310,7 @@ class gui(object):
 
     # simple way to check if image is animated
     def _checkIsAnimated(self, name):
-        if imghdr.what(name) == "gif":
+        if puremagic.what(name) == "gif":
             try:
                 PhotoImage(file=name, format="gif - 1")
                 return True
@@ -7436,7 +7436,7 @@ class gui(object):
         # else load a new one
         elif os.path.isfile(imagePath):
             if os.access(imagePath, os.R_OK):
-                imgType = imghdr.what(imagePath)
+                imgType = puremagic.what(imagePath)
                 if imgType is None:
                     raise Exception( "Invalid file: " + imagePath + " is not a valid image")
                 elif not imagePath.lower().endswith(imgType) and not (
