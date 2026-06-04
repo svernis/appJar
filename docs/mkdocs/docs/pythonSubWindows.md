@@ -27,7 +27,6 @@ app.stopSubWindow()
 
 app.go()
 ```
-
 Definition of SubWindows happens in the same part of the code as the rest of the GUI, but they default to being hidden.  
 Both SubWindows and the main window can be *shown* and *hidden* - this is usually done through button presses.  
 

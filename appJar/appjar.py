@@ -13362,6 +13362,15 @@ class Properties(LabelFrame, object):
         self.cmd = cmd
 
 #####################################
+# appJar Frame
+#####################################
+
+class ajFrame(Frame, object):
+
+    def __init__(self, parent, *args, **options):
+        super(ajFrame, self).__init__(parent, *args, **options)
+
+#####################################
 # Pie Chart Class
 #####################################
 

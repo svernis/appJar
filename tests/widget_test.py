@@ -3774,6 +3774,7 @@ with gui("Simple Demo", transparency=50, padding=5, location="CENTER", bg="red")
 
 print("<<<Widget Test Suite Complete on app4 >>>")
 
+
 doStopAgain = 0
 def test_gui2(btn=None):
     print("Testing GUI2")
