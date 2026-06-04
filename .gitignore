@@ -75,4 +75,5 @@ target/
 .DS_Store
 
 codechef/
+
 appJar.code-workspace
