@@ -180,6 +180,7 @@ def test_entries():
 
     assert isinstance(app.addAutoEntry("ae1", ["a", "b", "c"]), Entry)
     app.setAutoEntryNumRows("ae1", 5)
+    app.setAutoEntryListWidth("ae1", 20)
     app.appendAutoEntry("ae1", "newOne")
     app.appendAutoEntry("ae1", ["newTwo", "newThree"])
     app.removeAutoEntry("ae1", "newOne")
@@ -433,6 +434,15 @@ def test_buttons():
             [["a2b1", "a2b2", "a2b3", "a2b4"],
             ["b2b1", "b2b2", "b2b3", "b2b4"],
             ["c2b1", "c2b2", "c2b3", "c2b4"]],
+        None)
+
+    app.addNamedButtons(
+            [["a2b1", "a2b2", "a2b3", "a2b4"],
+            ["b2b1", "b2b2", "b2b3", "b2b4"],
+            ["c2b1", "c2b2", "c2b3", "c2b4"]],
+            [["xa2b1", "xa2b2", "xa2b3", "xa2b4"],
+            ["xb2b1", "xb2b2", "xb2b3", "xb2b4"],
+            ["xc2b1", "xc2b2", "xc2b3", "xc2b4"]],
         None)
 
     def buts(btn):
@@ -1136,6 +1146,7 @@ def test_text_areas():
     app.textAreaCreateTag("t2", "red", background="red", foreground="white")
     assert "red" in app.getTextAreaTags("t2")
     app.getTextAreaTag("t2", "red")
+    app.getTextAreaTagRanges("t2", "red")
     app.textAreaCreateTag("t2", "green", background="green", foreground="white")
     app.textAreaTagPattern("t2", "red", "this")
 
@@ -1305,6 +1316,9 @@ def test_meters():
     app.setMeterFill("spm", ["red", "green"])
     app.setMeterFill("dum", ["red", "pink"])
 
+    app.setMeterFill("spm", ["red", "green"], gradient=False)
+    app.setMeterFill("dum", ["red", "pink"], gradient=True)
+
     app.getMeter("spm")
     app.getMeter("dum")
 
@@ -1369,6 +1383,8 @@ def test_properties():
 
     app.setPropertiesBoxBg("p2", "red")
     app.setPropertiesSelectColour("p2", "red")
+
+#    assert app.lastFocus == app.getLastFocus()
 
     app.setProperties("p2", HASH_TWO)
     validateProp("p2", HASH_TWO)
@@ -2429,6 +2445,9 @@ def test_containers():
     app.stopTab()
     app.stopTabbedFrame()
 
+    app.setTabImage('tbf1', 'tab1', "1_entries.gif")
+    app.setTabIcon('tbf1', 'tab2', "save")
+
     with pytest.raises(Exception) :
         app.startTab()
 
@@ -2442,6 +2461,9 @@ def test_containers():
     app.setTabText("tbf1", "tab3")
 
     app.setTabBg("tbf1", "tab2", "red")
+
+    app.setTabIcon("tbf1", "tab2", "save")
+    app.setTabImage("tbf1", "tab2", "1_flash.gif")
 
 
     assert app.getTabbedFrameSelectedTab("tbf1") == "tab1"
@@ -3280,9 +3302,11 @@ def test_gui_properties():
     app.bg = "red"
     assert app.bg == "red"
 
-    myFont = str(app.fonts[11])
-    myFont1 = str(app.fonts[12])
-    myFont2 = str(app.fonts[13])
+    print("Testing fonts:", app.fonts)
+    
+    myFont = str(app.fonts[2])
+    myFont1 = str(app.fonts[3])
+    myFont2 = str(app.fonts[4])
     print(myFont, myFont1, myFont2)
 
     app.font = 30
@@ -3516,12 +3540,12 @@ with gui(debug=True) as app3:
     app3.toolbar(["a", "b", "file", "open"], tester_function, icons=['a', 'b', 'file', 'open'], status=[1, 0, False, True], bg='pink')
     app3.addStatusbar(TEXT_ONE, 1, "LEFT")
     with app3.tabbedFrame("tf"):
-        with app3.tab("t1"):
+        with app3.tab("t1", icon='save'):
             with app3.labelFrame("lf1"):
                 app3.addLabel("l1", "label")
             with app3.toggleFrame("tf1"):
                 app3.addCheckBox("cb1")
-        with app3.tab("t2", afterTab='t1'):
+        with app3.tab("t2", afterTab='t1', image="1_entries.gif"):
             with app3.panedFrame("pf1", sash=50):
                 with app3.panedFrame("vpf1", vertical=True):
                     app3.addLabel("l2", "label")
@@ -3584,7 +3608,7 @@ def press(btn):
     app4.meter("Cry", app4.scale("happiness"), text="fred")
     app4.meter("CryingMore", app4.slider("happiness again"))
     app4.meter("CryingMorer", app4.scale("happiness again"), text="alphabet")
-    app4.meter("CryingMorerr", (app4.slider("happiness again"),app4.scale("happiness again")))
+#    app4.meter("CryingMorerr", (app4.slider("happiness again"),app4.scale("happiness again")))
 
 def updateApp4(btn=None):
     app4.label("title", "aaa")
@@ -3677,7 +3701,7 @@ with gui("Simple Demo", transparency=50, padding=5, location="CENTER", bg="red")
     app4.entry("data", colspan=3, kind="directory")
     app4.entry("data2", value="lots of data", colspan=3, focus=True, case="upper", limit=15)
     app4.entry("data3", colspan=3, default="france", kind="validation", labBg='orange')
-    app4.entry("data4", value=["a", "aa", "aba", "abc", "abd"], colspan=3, kind="auto", rows=4)
+    app4.entry("data4", value=["a", "aa", "aba", "abc", "abd"], colspan=3, kind="auto", rows=4, listWidth=20)
 
     app4.entry("se1", row=0, column=1, default="standard", submit=changer, change=changer, limit=5, case="lower", rows=3)
     app4.entry("sv1", row=1, column=1, kind="validation", default="validation", submit=changer, change=changer, limit=5, case="upper", rows=3)
@@ -3707,6 +3731,8 @@ with gui("Simple Demo", transparency=50, padding=5, location="CENTER", bg="red")
     app4.button("Cheery", press, image="1_entries.gif")
     app4.button("Cry", press, row=row, column=2)
 
+    app4.buttons(["Clap", "Cheer", "Cheery"], press, labels=['xx1', 'xx2', 'xx3'])
+
     app4.date("date", row=row, column=3, rowspan=4, change=changer)
 
     app4.scale("happiness", colspan=3, increment=1, show=True, change=press)
@@ -3724,7 +3750,7 @@ with gui("Simple Demo", transparency=50, padding=5, location="CENTER", bg="red")
     app4.separator(colspan=3, direction="horizontal")
 
     row=app4.gr()
-    app4.meter("Cry", row=row, column=0, fill="orange")
+    app4.meter("Cry", row=row, column=0, fill="orange", gradient=False, orientation='vertical')
     with app4.labelFrame("Links", row=row, column=1):
         app4.link("Cry", "http://www.google.com")
         app4.link("Shout", press)
@@ -3736,10 +3762,12 @@ with gui("Simple Demo", transparency=50, padding=5, location="CENTER", bg="red")
     toppings={"Cheese":False, "Tomato":False, "Bacon":False, "Corn":False, "Mushroom":False}
 
     app4.properties("Toppings", toppings, row=row, column=2, change=changer)
-    app4.meter("CryingMor", fill="yellow")
+    app4.meter("CryingMor", fill="yellow", gradient=True)
     app4.meter("CryingMore", 50, colspan=3, kind="other")
-    app4.meter("CryingMorer", 50, colspan=3, kind="split", fill=["green", "blue"])
+#    app4.meter("CryingMorer", 50, colspan=3, kind="split", fill=["green", "blue"])
+    app4.meter("h_CryingMorer", 50, colspan=3, kind="split", fill=["green", "blue"], orientation='vertical')
     app4.meter("CryingMorerr", (50,70), colspan=3, kind="dual", fill=["green", "blue"])
+    app4.meter("h_CryingMorerr", (50,70), colspan=3, kind="dual", fill=["green", "blue"], orientation='vertical')
 
     app4.registerEvent(test_gui4)
     app4.setPollTime(1000)

@@ -95,8 +95,8 @@ Each of these will add the specified type of Entry, using the title provided.
 * `.setValidationEntryLabelBg(title, bg)`  
     This allows you to change the colour of the validation label, in a validation entry.  
 
-* `.setAutoEntryNumRows(title, rows)`  
-    This will set the number of rows to display in an AutoEntry.  
+* `.setAutoEntryNumRows(title, rows)` & `.setAutoEntryListWidth(title, width)`  
+    This will set the number of rows to display in an AutoEntry or the width of the AutoEntry drop-down.  
     NB. this is limited to the depth of the GUI - if there is no space, then no rows will be displayed. 
     ![AutoEntry](img/1_autoEntry.png)  
 
@@ -319,7 +319,7 @@ That way, multiple widgets can use the same function, but different actions can 
     This creates the named button, as above, using the specified icon.  
     If align is set, the image will be aligned relative to the text, otherwise the image will replace the text.  
 
-* `.addNamedButton(name, title, function)`  
+* `.addNamedButton(name, title, function)` & `.addNamedButtons(names, titles, functions)`  
     By default, it's not possible to have two buttons with the same text.  
     If that's required, a named button should be used.  
     This allows a name and title to be set for a button.  

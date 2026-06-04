@@ -159,6 +159,12 @@ The following allow widgets to be manipulated on screen:
     If called while inside a different container, the widget will be cloned into that container.  
     **NB.** Cloning widgtes is *very* rudimentary, it won't work for compound widgets.  
 
+* `.lift XXX (name)`
+    Lifts (raises) a widget to the top of a grid cell.  
+
+* `.lower XXX (name)`
+    Lowers a widget to the bottom of a grid cell.  
+
 * `.empty XXX(name)`  
     Will destroy all widgets in the named container.  
 
@@ -167,6 +173,14 @@ The following allow widgets to be manipulated on screen:
 
 * `.remove XXX (name)`  
     Permanently remove the widget (deletes it).
+
+* `.removeWidgetAt(x, y)`  
+    Permanently remove the widget (deletes it) at the specified x,y in the current grid.  
+    If the widget was added inside a container, that container will need to be started before the widget can be found:  
+    ```python
+    with app.frame('f1'):
+        app.removeWidgetAt(2, 2)
+    ```
 
 * `.removeAllWidgets()`  
     Permanently remove all widgets.

@@ -73,7 +73,10 @@ target/
 
 # MAC stuff
 .DS_Store
+.icloud
 
 codechef/
 
 appJar.code-workspace
+*.keys
+*.keys[cod]

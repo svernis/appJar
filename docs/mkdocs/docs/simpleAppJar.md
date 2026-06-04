@@ -177,6 +177,7 @@ An interactive widget, for capturing user input in the GUI.
 | secret | boolean | False | Configures the entry box to show stars instead of characters. |
 | default | string | None | Sets default text to display in an empty entry. |
 | rows | integer | 10 | If the kind is `auto` this will set the number of rows to show. |
+| listWidth | integer | None | If the kind is `auto` this will set the width of the drop-down. |
 | labBg | string | None | Special parameter to change the BG of the validation label in a validaiton entry. |
 | text | string | None | Special parameter to change the text of the file entry button. |
 
@@ -202,6 +203,7 @@ An interactive widget, for capturing multi-line user input in the GUI.
 | tags | list | [] | A list of tags, where each tag contains a name and dictionary of values. |
 | end | boolean | True | Whether to add the new text to the end (True) or beginning (False) |
 | replace | boolean | False | Will replace any existing text in the text area when updating. |
+| redirect | boolean | None | Redirects calls to `print` to this TextArea. Set to `True`/`False` to append text to the end/beginning. |
 
 ## Button  
 ---
@@ -216,6 +218,20 @@ A clickable button for triggering events.
 | image | string | None | A path to an image to show in the button. |
 | icon | string | None | The name of an icon to show in the button. |
 | label | string | None | Alternative text to display on the button. |
+
+## Buttons  
+---
+
+A clickable button for triggering events.  
+
+* `.buttons(title, value=None)`  
+    The `title` should be a 1D or 2D list of strings to show on the buttons.  
+    The `value` should be a function to call when the buttons are pressed.
+    It can be a single function, or a list of functions that matches the list of titles.  
+
+| Parameter | Data type | Default | Description |
+| --------- | --------- | ------- | ------------|
+| labels | list | None | An optional list of alternative text to show on the buttons. | 
 
 ## Link  
 ---
@@ -267,11 +283,13 @@ Setting this widget won't change the values, but change which one is selected.
 | mode | string | `select` | One of: `select`, `replace`, `rename`. `clear` or `delete` - see below. |  
 
 Different modes can be used when *setting* the widget:  
+
 * `select` - the default, the specified `value` will be selected.  
 * `clear` - deselects all items in the option box.  
 * `replace` - the contents of the list will be replaced with a new list, with an optional `index`.  
 * `rename` - this will change the text of an item in the option box, to the `newName`.  
 * `delete` - this will delete the specified option from the option box.  
+
 
 ## Spin  
 ---
@@ -290,6 +308,7 @@ Setting this widget won't change the values, but change which one is selected.
 | endValue | integer | None | If specified, value & endValue should be integers, and will be used to generate a range. |
 | selected | integer | 0 | The position of an item to select. |
 | item | string | None | The name of an item to select. |
+| reverse | boolean | True | Set this to False to reverse the order of items in the spinbox. |
 
 ## Listbox
 ---
@@ -312,6 +331,7 @@ Setting this widget won't change the values, but change which one is selected.
 | mode | string | `select` | One of: `select`, `change`, `rename`. `clear` or `delete` - see below. |  
 
 Different modes can be used when *setting* the widget:  
+
 * `select` - default, select the specified item(s) or all  
 * `deselect` - deselect the specified item(s), or all  
 * `toggle` - toggle the specified item(s), or all  
@@ -320,6 +340,7 @@ Different modes can be used when *setting* the widget:
 * `replace` - replace all items  
 * `add` - add the specified item(s)
 * `delete` - delete the specified item, or all
+
 
 ## Slider  
 ---
@@ -351,6 +372,8 @@ Various styles of progress meter.
 | text | string | None | Set text to show on the meter. |
 | kind | string | `standard` | Choose the kind of meter: `standard`, `split` or `dual`. |
 | fill | boolean | None | Set the fill colour(s) for the slider (a list of two colours for `split` & `dual`). |
+| gradient | boolean | True | Enable/disable gradients on the fill colour. |
+| orientation | string | `horizontal` | Set to `vertical` to draw the meter vertically. |  
 
 ## Grip  
 ---
@@ -497,6 +520,7 @@ Displays the tree widget.
 | edit | function | None | A function to call when a node is edited. | 
 | editable | boolean | None | Determines if nodes are editable or not. | 
 | attributes | boolean | None | Determines if attributes should be shown in the tree. |
+| menu | boolean | None | Determines if a right-click menu will be shown. |
 | fg | string | None | The foreground colour of the widget. | 
 | bg | string | None | The background colour of the widget. | 
 | fgH | string | None | The foreground colour of a selected node. | 
