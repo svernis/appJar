@@ -43,6 +43,7 @@ setup(
     keywords=__keywords__,
     license=__license__,
     classifiers=__classifiers__,
+    install_requires=["puremagic"],
     package_data = {
         "appJar": ["lib/*.py", "lib/*.txt", "lib/tkdnd2.8/*.tcl", "lib/tkdnd2.8/tcl_files/*.tcl", "lib/tkdnd2.8/tcl_libs/*", "resources/icons/*", "examples/showcase.py", "PYPI.md"]
     }
