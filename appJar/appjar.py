@@ -9142,6 +9142,10 @@ class gui(object):
         lab = self.widgetManager.get(WIDGET_NAMES.Label, name)
         lab.config(text=text)
 
+    def setLabelFg(self, name, fg):
+        lab = self.widgetManager.get(WIDGET_NAMES.Label, name)
+        lab.config(fg=fg)
+
     def getLabel(self, name):
         lab = self.widgetManager.get(WIDGET_NAMES.Label, name)
         return lab.cget("text")
