@@ -2763,6 +2763,26 @@ class gui(object):
     buttonFont = property(getButtonFont, setButtonFont)
 
     def setLabelFont(self, *args, **kwargs):
+        if len(args) > 0 and isinstance(args[0], UNIVERSAL_STRING):
+            try:
+                lab = self.widgetManager.get(WIDGET_NAMES.Label, args[0])
+            except ItemLookupError:
+                # keep backwards-compatible behaviour for global font updates
+                pass
+            else:
+                f = tkFont.Font(font=lab.cget("font"))
+                if len(args) > 1:
+                    if isinstance(args[1], int):
+                        kwargs = {'size': args[1]}
+                    elif isinstance(args[1], dict):
+                        kwargs = args[1]
+                    elif isinstance(args[1], tkFont.Font):
+                        lab.config(font=args[1])
+                        return
+                f.config(**kwargs)
+                lab.config(font=f)
+                return
+
         kwargs = self._fontHelper('labelFont', *args, **kwargs)
         if kwargs is not None:
             self.tableFont.config(**kwargs)

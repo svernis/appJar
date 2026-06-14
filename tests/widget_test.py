@@ -8,6 +8,8 @@ import turtle
 
 try: from tkinter import Frame, Event, Label, Entry, Button, Radiobutton, Checkbutton, OptionMenu, Spinbox, Listbox, Message, PhotoImage, Scale, Canvas, LabelFrame, PanedWindow
 except: from Tkinter import Frame, Event, Label, Entry, Button, Radiobutton, Checkbutton, OptionMenu, Spinbox, Listbox, Message, PhotoImage, Scale, Canvas, LabelFrame, PanedWindow
+try: import tkinter.font as tkFont
+except: import tkFont
 
 try: import ttk
 except: from tkinter import ttk
@@ -118,6 +120,19 @@ def test_labels():
 
     app.setLabelFg("sl1", "yellow")
     assert app.getLabelWidget("sl1").cget("fg") == "yellow"
+
+    app.addLabel("fontA", "fontA")
+    app.addLabel("fontB", "fontB")
+    font_a_before = tkFont.Font(font=app.getLabelWidget("fontA").cget("font")).actual()["size"]
+    font_b_before = tkFont.Font(font=app.getLabelWidget("fontB").cget("font")).actual()["size"]
+
+    app.setLabelFont("fontA", size=9)
+
+    font_a_after = tkFont.Font(font=app.getLabelWidget("fontA").cget("font")).actual()["size"]
+    font_b_after = tkFont.Font(font=app.getLabelWidget("fontB").cget("font")).actual()["size"]
+    assert font_a_after == 9
+    assert font_b_after == font_b_before
+    assert font_a_before != font_a_after
 
     assert app.getLabel("el1") == EMPTY
     assert app.getLabel("l1") == TEXT_ONE

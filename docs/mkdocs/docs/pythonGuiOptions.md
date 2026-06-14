@@ -109,6 +109,10 @@ app.setButtonFont(size=14, family="Verdana", underline=False, slant="roman")
     This can be used to set the font for all label-type widgets.  
     Pass in any of the above styles that are required.  
 
+* `.setLabelFont(name, **style)`  
+    This can be used to set the font for one specific label only.  
+    Pass the label name first, then the required font styles.  
+
 * `.setButtonFont(**style)`  
     This can be used to set the font for all button-type widgets.  
     Pass in any of the above styles that are required.  
