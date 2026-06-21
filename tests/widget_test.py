@@ -123,13 +123,15 @@ def test_labels():
 
     app.addLabel("fontA", "fontA")
     app.addLabel("fontB", "fontB")
-    font_a_before = tkFont.Font(font=app.getLabelWidget("fontA").cget("font")).actual()["size"]
-    font_b_before = tkFont.Font(font=app.getLabelWidget("fontB").cget("font")).actual()["size"]
+    fontA = app.widgetManager.get(WIDGET_NAMES.Label, "fontA")
+    fontB = app.widgetManager.get(WIDGET_NAMES.Label, "fontB")
+    font_a_before = tkFont.Font(font=fontA.cget("font")).actual()["size"]
+    font_b_before = tkFont.Font(font=fontB.cget("font")).actual()["size"]
 
     app.setLabelFont("fontA", size=9)
 
-    font_a_after = tkFont.Font(font=app.getLabelWidget("fontA").cget("font")).actual()["size"]
-    font_b_after = tkFont.Font(font=app.getLabelWidget("fontB").cget("font")).actual()["size"]
+    font_a_after = tkFont.Font(font=fontA.cget("font")).actual()["size"]
+    font_b_after = tkFont.Font(font=fontB.cget("font")).actual()["size"]
     assert font_a_after == 9
     assert font_b_after == font_b_before
     assert font_a_before != font_a_after
